@@ -79,7 +79,7 @@ public:
 	}
 
 	//solution 3:中心扩展法，枚举所有中心，尝试扩展
-	string longestPalindrome(string s) {
+	string longestPalindrome3(string s) {
 		int n = s.length();
 		if (n < 2) return s;
 		//循环字符串的每个可以作为中心的位置，中新用left和right确定

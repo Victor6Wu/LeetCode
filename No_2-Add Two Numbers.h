@@ -2,7 +2,7 @@
 
 class Solution {
 public:
- //solution 1:   
+    //solution 1:   
     ListNode* addTwoNumbers1(ListNode* l1, ListNode* l2) {
         ListNode* head = nullptr, * tail = nullptr;  //此处的head和tail表示最终结果的第一个和最后一个ListNode*，而不是List中的header和tailer；
         int carry = 0;
@@ -31,7 +31,7 @@ public:
         return head;
     }
 
- //solution 2:   
+    //solution 2:   
     ListNode* addTwoNumbers2(ListNode* l1, ListNode* l2) {
         ListNode dummy(-1);
         int carry = 0;

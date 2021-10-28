@@ -1,4 +1,3 @@
-//
 #include<vector>
 #include<set>
 #include<algorithm>
@@ -41,12 +40,12 @@ public:
 };
 
 //solution 1：优先队列法，维护一个大根堆记录小于等于中位数的数；一个小根堆记录大于中位数的数；总的保持两个根堆的数量相差不过1
-class MedianFinder {
+class MedianFinder1 {
 public:
     priority_queue<int, vector<int>, less<int>> queMIN;
     priority_queue<int, vector<int>, greater<int>> queMAX;
 
-    MedianFinder() {}
+    MedianFinder1() {}
 
     void addNum(int num) {
         //插入无非就两种情况，往queMIN和queMAX插入
@@ -80,12 +79,12 @@ public:
 };
 
 //solution 2:有序集合+双指针:主题思路和solution 1相似，都是一直维护着插入新数前的中位数，根据不同的插入情况，修改当前的中位数
-class MedianFinder {
+class MedianFinder2 {
     multiset<int> nums;
     multiset<int>::iterator left, right;
 
 public:
-    MedianFinder():left(nums.begin()),right(nums.end()){}
+    MedianFinder2():left(nums.begin()),right(nums.end()){}
 
     void addNum(int num) {
         const size_t n = nums.size();

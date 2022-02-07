@@ -63,7 +63,7 @@ public:
 		return ans;
 	}*/
 
-	//solution ：排序后，两层循环+双指针
+	//solution ：排序后，两层循环+双指针，相当于比No_16多了一层外循环
 	vector<vector<int>> fourSum(vector<int>& nums, int target) {
 		vector<vector<int>> ans;
 		sort(nums.begin(), nums.end());
@@ -92,7 +92,9 @@ public:
 
 					if (sum == target) {
 						ans.push_back({ nums[first] , nums[second] , nums[third] , nums[forth] });
+						//左右同时收缩
 						++third;
+						--forth;
 					}
 					else if (sum < target) {
 						++third;

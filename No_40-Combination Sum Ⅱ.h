@@ -13,6 +13,7 @@ public:
             return;
         }
 
+        //一个for内的元素是同一层的，地位相当，要做到就是避免同层重复
         for (int i = idx; i < candidates.size() && target - candidates[i] >= 0; i++) {
             // 对于重复的数值段，后面的元素情况是前面的子集，按照循环的顺序，没有必要再对子集的情况进行考虑
             if (i > idx && candidates[i] == candidates[i - 1]) {

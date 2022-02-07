@@ -3,7 +3,7 @@
 #include<algorithm>
 using namespace std;
 
-//solution1:借鉴No_31字典序的思路
+//solution1:借鉴No_31字典序的思路，下一个最大的字典序就是不断地将大的数挪到高位，小的数挪到地位。
 class Solution1 {
 public:
 	vector<vector<int>> permute(vector<int>& nums) {
@@ -13,20 +13,20 @@ public:
 		res.push_back(nums);
 		bool sign = true;
 		while (sign) {
-			int i = n;
+			int i = n;		//从后向前找，找到那个不满足逆序递增趋势的位置
 			while (i >= 0 && nums[i] >= nums[i + 1]) {
 				i--;
 			}
 			if (i >= 0) {
 				int j = n + 1;
-				while (j > 0 && nums[i] >= nums[j]) {
+				while (j > 0 && nums[i] >= nums[j]) {		//还是从后向前找，找到刚好比i位置的数大的数
 					j--;
 				}
 				swap(nums[i], nums[j]);
-				reverse(nums.begin() + i + 1, nums.end());
+				reverse(nums.begin() + i + 1, nums.end());	//重排后面一部分，使其满足递增趋势
 				res.push_back(nums);
 			}
-			else {
+			else {			//当整个数组呈递减趋势时已经是最大的字典序，次数i会找到-1，退出即可
 				sign = false;
 			}
 		}
@@ -59,5 +59,33 @@ public:
 		vector<vector<int>> res;
 		backtrack(res, nums, 0, (int)nums.size());
 		return res;
+	}
+};
+
+//回溯自写代码，数组中没有重复值，对数组全排序就意味着对所有的索引进行了全排序
+class Solution {
+private:
+	vector<vector<int>> result;
+	vector<int> tmp;
+public:
+	void backtracking(vector<int>& nums, vector<bool> used) {
+		if (tmp.size() == nums.size()) {
+			result.push_back(tmp);
+			return;
+		}
+		for (int i = 0; i < nums.size(); i++) {
+			if (!used[i]) {
+				used[i] = true;
+				tmp.push_back(nums[i]);
+				backtracking(nums, used);
+				tmp.pop_back();
+				used[i] = false;
+			}
+		}
+	}
+	vector<vector<int>> permute(vector<int>& nums) {
+		vector<bool> used(nums.size(), false);		//其实是维护索引有没有被用过
+		backtracking(nums, used);
+		return result;
 	}
 };

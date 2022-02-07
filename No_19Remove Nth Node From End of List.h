@@ -29,7 +29,7 @@ public:
         ListNode* dummy = new ListNode(0);                //人为引入一个节点在head前，避免了solution 1 中的链表为空；删除节点为头节点的情况
         dummy->next = head;
         ListNode* fast = dummy, * slow = dummy;
-        for(int i = 0; i <= n; ++i)                       //会移动 n+1 次
+        for(int i = 0; i <= n; ++i)                       //会移动 n+1 次,因为想让慢指针落到被删除结点的前一个
         fast = fast->next;
 
         while (fast) {                                    //删除头节点的情况也被直接判断，若删除的为头节点，此时fast已经为nullptr

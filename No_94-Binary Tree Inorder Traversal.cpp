@@ -24,7 +24,7 @@ public:
 		}
 	}
 
-	//solution 2：迭代法
+	//solution 2：迭代法，与前序遍历不同，要深入节点左子树
 	vector<int> inorderTraversal2(TreeNode* root) {
 		vector<int> ans;
 		stack<TreeNode*> stk;
@@ -36,6 +36,7 @@ public:
 			//当前root为空后弹出栈顶元素开始存入ans，再考虑其右子树
 			root = stk.top();
 			stk.pop();
+
 			ans.push_back(root->val);
 			root = root->right;
 		}

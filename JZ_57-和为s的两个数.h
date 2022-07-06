@@ -27,7 +27,7 @@ public:
         if (n <= 1) return {};
         int left = 0, right = n - 1;
         while (left < right) {
-            int tmp = nums[left] + nums[right];     //对于可能溢出的情况，不要同相加的结果去比较大小
+            int tmp = nums[left] + nums[right];     //对于可能溢出的情况，不要用相加的结果去比较大小，用减法
             if (tmp == target) return { nums[left], nums[right] };
             else if (tmp > target) right--;
             else left++;

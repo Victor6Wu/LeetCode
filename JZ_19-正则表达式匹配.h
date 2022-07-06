@@ -1,9 +1,49 @@
-//Given an input string (s) and a pattern (p), implement regular expression matching with support for '.' and '*'
-
+//参考lc-10
 #include<string>
 #include<vector>
 using namespace std;
 
+//错误代码，但是可以通过大部分的测试用例
+class Solution {
+public:
+	bool isMatch(string s, string p) {
+		int n = s.size();
+		int bounder = p.size() - n;
+		int index = 0;
+		while (index <= bounder) {
+			string temp = p.substr(index, index + n);
+			bool signal = true;
+			int i = 0;
+			while (i < n) {
+				if (temp[i] == '.') {
+					++i;
+					continue;
+				}
+
+				else if (temp[i] == '*') {
+					if (i == 0) {
+						signal = false;
+						break;
+					}
+					else {
+						temp[i] = temp[i - 1];
+						continue;
+					}
+				}
+				if (s[i] != temp[i]) {
+					signal = false;
+					break;
+				}
+				++i;
+			}
+			if (signal == true) return true;
+			else index++;
+		}
+		return false;
+	}
+};
+
+//动态规划法
 class Solution {
 public:
 	//solution 1:动态规划法

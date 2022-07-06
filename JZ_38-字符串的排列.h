@@ -49,7 +49,7 @@ public:
         }
 
         for (int i = 0; i < s.size(); i++) {
-            //树层去重，非常关键的一点是：sign[i - 1] == false，否则会影响树枝
+            //树层去重，非常关键的一点是：sign[i - 1] == false，用于表明当前是树层，否则会影响树枝
             if (i > 0 && s[i] == s[i - 1] && sign[i - 1] == false) continue; 
             if (sign[i]) continue;
             else {
